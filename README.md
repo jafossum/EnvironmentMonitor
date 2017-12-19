@@ -21,7 +21,7 @@ This [SparkFun](https://www.sparkfun.com/)  [OpenSegment Shield](https://www.spa
 
 The [OpenSegment Shield](https://www.sparkfun.com/products/13190) can be controlled in one of three ways: Serial TTL communication, SPI serial communication or I2C serial.
 
-![7Segment Blue](Resources/7Segment.jpg "7Segment Blue")
+![7Segment Blue](Resources/7Segment.png "7Segment Blue")
 
 
 In combination with [7-Segment Display - 20mm (Blue)](https://www.sparkfun.com/products/11408) this will show the CO2, Temparature and Humidity measurements in cycles.
