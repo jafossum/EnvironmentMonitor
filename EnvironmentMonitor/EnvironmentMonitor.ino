@@ -5,10 +5,10 @@
 
 */
 
-#include <SparkFunBME280.h>
 #include <SparkFunCCS811.h>
 #include "Wire.h"
 #include "SegmentDisplay.h"
+#include "Bme280Wrapper.h"
 
 #define CCS811_ADDR 0x5B //Default I2C Address
 
@@ -25,7 +25,8 @@ int displayCounter = 0;
 
 //Global sensor objects
 CCS811 myCCS811(CCS811_ADDR);
-BME280 myBME280;
+// BME280 myBME280;
+Bme280Wrapper Bme280Wrapper;
 SegmentDisplay mySegmentDisplay;
 
 void setup()
@@ -51,27 +52,8 @@ void setup()
     Serial.println("CCS811 online");
   }
 
-  //Initialize BME280
-  myBME280.settings.commInterface = I2C_MODE;
-  myBME280.settings.I2CAddress = 0x77;
-  myBME280.settings.runMode = 3; //Normal mode
-  myBME280.settings.tStandby = 0;
-  myBME280.settings.filter = 4;
-  myBME280.settings.tempOverSample = 5;
-  myBME280.settings.pressOverSample = 5;
-  myBME280.settings.humidOverSample = 5;
-
-  //Calling .begin() causes the settings to be loaded
-  delay(10);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.
-  byte id = myBME280.begin(); //Returns ID of 0x60 if successful
-  if (id != 0x60)
-  {
-    Serial.println("Problem with BME280");
-  }
-  else
-  {
-    Serial.println("BME280 online");
-  }
+  // Initialize BME820
+  Bme280Wrapper.init();
 }
 
 void loop() 
@@ -83,8 +65,8 @@ void loop()
     printData(); //Pretty print all the data
   #endif
 
-    BMEtempC = myBME280.readTempC();
-    BMEhumid = myBME280.readFloatHumidity();
+    BMEtempC = Bme280Wrapper.readTempC();
+    BMEhumid = Bme280Wrapper.readFloatHumidity();
     CCSco2 = myCCS811.getCO2();
     CCStvoc = myCCS811.getTVOC();
 
@@ -120,7 +102,7 @@ void printData()
   Serial.print("]ppb");
 
   Serial.print(" temp[");
-  Serial.print(myBME280.readTempC(), 1);
+  Serial.print(Bme280Wrapper.readTempC(), 1);
   Serial.print("]C");
 
   //Serial.print(" temp[");
@@ -128,7 +110,7 @@ void printData()
   //Serial.print("]F");
 
   Serial.print(" pressure[");
-  Serial.print(myBME280.readFloatPressure(), 2);
+  Serial.print(Bme280Wrapper.readFloatPressure(), 2);
   Serial.print("]Pa");
 
   //Serial.print(" pressure[");
@@ -144,7 +126,7 @@ void printData()
   //Serial.print("]ft");
 
   Serial.print(" humidity[");
-  Serial.print(myBME280.readFloatHumidity(), 0);
+  Serial.print(Bme280Wrapper.readFloatHumidity(), 0);
   Serial.print("]%");
 
   Serial.println();
