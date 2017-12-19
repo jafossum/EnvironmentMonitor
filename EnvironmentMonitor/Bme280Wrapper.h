@@ -7,13 +7,16 @@
 
 class Bme280Wrapper {
 private:
-    BME280 myBME280;
+    
 public:
     Bme280Wrapper();
     void init();
     long readTempC();
+    long readTempF();
     long readFloatHumidity();
     long readFloatPressure();
+    long readFloatAltitudeMeters();
+    long readFloatAltitudeFeet();
 };
 
 #endif

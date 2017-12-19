@@ -1,5 +1,7 @@
 #include "Bme280Wrapper.h"
 
+BME280 myBME280;
+
 Bme280Wrapper::Bme280Wrapper() {}
 
 void Bme280Wrapper::init() {
@@ -30,10 +32,21 @@ long Bme280Wrapper::readTempC() {
     return myBME280.readTempC();
 }
 
+long Bme280Wrapper::readTempF() {
+    return myBME280.readTempF();
+}
+
 long Bme280Wrapper::readFloatHumidity() {
     return myBME280.readFloatHumidity();
 }
 
 long Bme280Wrapper::readFloatPressure() {
     return myBME280.readFloatPressure();
+}
+
+long Bme280Wrapper::readFloatAltitudeMeters() {
+    return myBME280.readFloatAltitudeMeters();
+}
+long Bme280Wrapper::readFloatAltitudeFeet() {
+    return myBME280.readFloatAltitudeFeet();
 }
