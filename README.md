@@ -6,11 +6,11 @@ Environment Monitor for watching CO2, Temperature and Humidity.
 ![CSS811/BME280](Resources/CCS811_BME280.jpg "CSS811/BME280")
 
 
-The [CCS811 and BME280 combination](https://www.sparkfun.com/products/14348) breakout board from [SparkFun](https://www.sparkfun.com/) provides all the meassurements needed for watching the indoor environemt. All made easy ussing Qwiic connectors and I2C communication.
+The [CCS811 and BME280 combination](https://www.sparkfun.com/products/14348) breakout board from [SparkFun](https://www.sparkfun.com/) provides all the meassurements needed for watching the indoor environemt. All made easy using Qwiic connectors and I2C communication.
 
 The CCS811 provides readings for equivalent CO2 (or eCO2) in the parts per million (PPM) and total volatile organic compounds in the parts per billion (PPB). 
 
-The CCS811 also has a feature that allows it to fine-tune its readings if it has access to the current humidity and temperature. Luckily for us, the BME280 provides humidity, temperature and barometric pressure!
+The CCS811 also has a feature that allows it to fine-tune its readings if it has access to the current humidity and temperature. Luckily, the BME280 provides humidity, temperature and barometric pressure!
 
 ## 7 Segment Display
 
