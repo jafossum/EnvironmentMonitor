@@ -1,6 +1,7 @@
 #ifndef segment_display_h
 #define segment_display_h
 
+#include <Arduino.h>
 #include "Wire.h"
 
 #define DISPLAY_ADDRESS 0x71 //This is the default address of the OpenSegment with both solder jumpers open
@@ -19,15 +20,14 @@ enum SpecialChar {
 class SegmentDisplay {
 private:
     void WriteSpecialChar(uint8_t controlChar);
-    void DeleteSpecialChar();
-    void SendSpecialChar(SegmentDisplay::SpecialChar specialChar);
 
 public:
-    SegmentDisplay():
+    SegmentDisplay();
     void init();
     void SendValue(int tempCycles);
     void SendString(char *toSend);
-
+    void SendSpecialChar(SpecialChar specialChar);
+    void DeleteSpecialChar();
 };
 
 #endif
