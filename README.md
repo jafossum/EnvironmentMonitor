@@ -1,4 +1,4 @@
-# EnvironmentMonitor
+# Environment Monitor
 Environment Monitor for watching CO2, Temperature and Humidity.
 
 ## SparkFun Environmental Combo Breakout - CCS811/BME280
