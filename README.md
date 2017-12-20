@@ -12,6 +12,11 @@ The CCS811 provides readings for equivalent CO2 (or eCO2) in the parts per milli
 
 The CCS811 also has a feature that allows it to fine-tune its readings if it has access to the current humidity and temperature. Luckily, the BME280 provides humidity, temperature and barometric pressure!
 
+### Arduino Libraries
+
+- SparkFun BME280 v1.2.0
+- SparkFun CCS811 v1.0.0
+
 ## 7 Segment Display
 
 ![OpenSegment Shield](Resources/7SegmentShield.jpg "OpenSegment Shield")
