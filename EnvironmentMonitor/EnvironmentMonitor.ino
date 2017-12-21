@@ -13,6 +13,8 @@
 // Comment this out for not printing data to the serialport after Setup()
 #define DEBUG
 
+#define UPDATE_INTERVAL_MS 2000
+
 float BMEtempC;
 float BMEhumid;
 float CCSco2;
@@ -20,6 +22,8 @@ float CCStvoc;
 
 String displayText;
 int displayCounter = 0;
+
+unsigned long previousTime = 0;
 
 // Global sensor objects
 Ccs811Wrapper Ccs811Wrapper;
@@ -49,32 +53,36 @@ void setup()
 
 void loop() 
 {
-  if (Ccs811Wrapper.dataAvailable()) //Check to see if CCS811 has new data
+  unsigned long elapsedTime = millis() - previousTime;
+  if (elapsedTime >= UPDATE_INTERVAL_MS) 
   {
+    previousTime = millis();
+
+    if (Ccs811Wrapper.dataAvailable()) //Check to see if CCS811 has new data
+    {
+    #ifdef DEBUG
+      printData(); //Pretty print all the data
+    #endif
+
+      BMEtempC = Bme280Wrapper.readTempC();
+      BMEhumid = Bme280Wrapper.readFloatHumidity();
+      CCSco2 = Ccs811Wrapper.getCO2();
+      CCStvoc = Ccs811Wrapper.getTVOC();
+
+      //This sends the temperature data to the CCS811
+      Ccs811Wrapper.setEnvironmentalData(BMEhumid, BMEtempC);
+
   #ifdef DEBUG
-    printData(); //Pretty print all the data
+      Serial.print("Applying new values (deg C, %): ");
+      Serial.print(BMEtempC);
+      Serial.print(",");
+      Serial.println(BMEhumid);
+      Serial.println();
   #endif
-
-    BMEtempC = Bme280Wrapper.readTempC();
-    BMEhumid = Bme280Wrapper.readFloatHumidity();
-    CCSco2 = Ccs811Wrapper.getCO2();
-    CCStvoc = Ccs811Wrapper.getTVOC();
-
-    //This sends the temperature data to the CCS811
-    Ccs811Wrapper.setEnvironmentalData(BMEhumid, BMEtempC);
-
-#ifdef DEBUG
-    Serial.print("Applying new values (deg C, %): ");
-    Serial.print(BMEtempC);
-    Serial.print(",");
-    Serial.println(BMEhumid);
-    Serial.println();
-#endif
+    }
+    
+    updateDisplay();
   }
-
-  updateDisplay();
-
-  delay(2000); //Wait for next reading
 }
 
 void printData()
