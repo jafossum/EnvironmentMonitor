@@ -137,13 +137,13 @@ void updateDisplay()
       break;
     case 1:
       mySegmentDisplay.SendValue(static_cast<int>(BMEtempC*10));
-      mySegmentDisplay.SendSpecialChar(SpecialChar::DECIMAL2);
+      mySegmentDisplay.SendSpecialChar(SpecialChar::DECIMAL3);
       displayCounter++;
       break;
     case 2:
-      displayText = "CO2";
+      displayText = "-CO2";
       mySegmentDisplay.SendString(&displayText[0]);
-      mySegmentDisplay.DeleteSpecialChar();
+      mySegmentDisplay.SendSpecialChar(SpecialChar::CLEAR);
       displayCounter++;
       break;
     case 3:
