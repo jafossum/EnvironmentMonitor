@@ -11,12 +11,12 @@ private:
 public:
     Bme280Wrapper();
     void init();
-    long readTempC();
-    long readTempF();
-    long readFloatHumidity();
-    long readFloatPressure();
-    long readFloatAltitudeMeters();
-    long readFloatAltitudeFeet();
+    float readTempC();
+    float readTempF();
+    float readFloatHumidity();
+    float readFloatPressure();
+    float readFloatAltitudeMeters();
+    float readFloatAltitudeFeet();
 };
 
 #endif
