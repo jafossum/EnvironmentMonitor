@@ -8,7 +8,7 @@ void SegmentDisplay::init()
     Wire.begin(); //Join the bus as master
 
     //Send the reset command to the display - this forces the cursor to return to the beginning of the display
-    Serial.print("Staring and resetting Display...");
+    Serial.println("Staring and resetting Display...");
     Wire.beginTransmission(DISPLAY_ADDRESS);
     Wire.write('v');
     Wire.endTransmission();
