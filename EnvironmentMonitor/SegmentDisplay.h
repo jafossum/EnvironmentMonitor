@@ -20,6 +20,7 @@ enum SpecialChar {
 class SegmentDisplay {
 private:
     void WriteSpecialChar(uint8_t controlChar);
+    void DeleteSpecialChar();
 
 public:
     SegmentDisplay();
@@ -27,7 +28,6 @@ public:
     void SendValue(int tempCycles);
     void SendString(char *toSend);
     void SendSpecialChar(SpecialChar specialChar);
-    void DeleteSpecialChar();
 };
 
 #endif
