@@ -38,7 +38,6 @@ void setup()
   {
     delay(200); // wait for serial port to connect. Needed for native USB
   }
-  Serial.println("Apply BME280 data to CCS811 for compensation.");
 
   // Start SegmentDisplay
   mySegmentDisplay.init();
@@ -139,12 +138,14 @@ void updateDisplay()
       displayCounter++;
       break;
     case 5:
-      mySegmentDisplay.SendValue(static_cast<int>(BMEhumid));
+      mySegmentDisplay.SendValue(static_cast<int>(BMEhumid*10));
+      mySegmentDisplay.SendSpecialChar(SpecialChar::DECIMAL3);
       displayCounter++;
       break;
     case 6:
       displayText = "TVOC";
       mySegmentDisplay.SendString(&displayText[0]);
+      mySegmentDisplay.SendSpecialChar(SpecialChar::CLEAR);
       displayCounter++;
       break;
     case 7:
