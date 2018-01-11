@@ -2,7 +2,6 @@
 * CCS811
 * BME280
 * SparkFun OpenSegment Shield with 20mm Segment display
-
 */
 
 #include "Wire.h"
@@ -99,25 +98,9 @@ void printData()
   Serial.print(Bme280Wrapper.readTempC(), 1);
   Serial.print("]C");
 
-  //Serial.print(" temp[");
-  //Serial.print(Bme280Wrapper.readTempF(), 1);
-  //Serial.print("]F");
-
   Serial.print(" pressure[");
-  Serial.print(Bme280Wrapper.readFloatPressure(), 2);
-  Serial.print("]Pa");
-
-  //Serial.print(" pressure[");
-  //Serial.print((Bme280Wrapper.readFloatPressure() * 0.0002953), 2);
-  //Serial.print("]InHg");
-
-  //Serial.print("altitude[");
-  //Serial.print(Bme280Wrapper.readFloatAltitudeMeters(), 2);
-  //Serial.print("]m");
-
-  //Serial.print("altitude[");
-  //Serial.print(Bme280Wrapper.readFloatAltitudeFeet(), 2);
-  //Serial.print("]ft");
+  Serial.print(Bme280Wrapper.readFloatPressure() * 0.01, 0);
+  Serial.print("]mb");
 
   Serial.print(" humidity[");
   Serial.print(Bme280Wrapper.readFloatHumidity(), 0);
