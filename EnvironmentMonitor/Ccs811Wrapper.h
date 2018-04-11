@@ -1,7 +1,7 @@
 #ifndef ccs811_wrapper_h
 #define ccs811_wrapper_h
 
-#include <Arduino.h>
+#include "Arduino.h"
 #include <SparkFunCCS811.h>
 #include "Wire.h"
 

@@ -1,7 +1,7 @@
 #ifndef bme280_wrapper_h
 #define bme280_wrapper_h
 
-#include <Arduino.h>
+#include "Arduino.h"
 #include <SparkFunBME280.h>
 #include "Wire.h"
 

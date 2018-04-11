@@ -4,6 +4,7 @@
 * SparkFun OpenSegment Shield with 20mm Segment display
 */
 
+#include "Arduino.h"
 #include "Wire.h"
 #include "SegmentDisplay.h"
 #include "Bme280Wrapper.h"

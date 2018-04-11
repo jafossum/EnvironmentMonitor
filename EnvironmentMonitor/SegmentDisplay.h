@@ -1,7 +1,7 @@
 #ifndef segment_display_h
 #define segment_display_h
 
-#include <Arduino.h>
+#include "Arduino.h"
 #include "Wire.h"
 
 #define DISPLAY_ADDRESS 0x71 //This is the default address of the OpenSegment with both solder jumpers open
