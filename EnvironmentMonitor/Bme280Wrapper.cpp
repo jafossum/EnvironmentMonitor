@@ -28,25 +28,59 @@ void Bme280Wrapper::init() {
     }
 }
 
-float Bme280Wrapper::readTempC() {
+float getTempC() {
     return myBME280.readTempC();
 }
 
-float Bme280Wrapper::readTempF() {
+float getTempF() {
     return myBME280.readTempF();
 }
 
-float Bme280Wrapper::readFloatHumidity() {
+float getHumidity() {
     return myBME280.readFloatHumidity();
 }
 
-float Bme280Wrapper::readFloatPressure() {
+float getPressure() {
     return myBME280.readFloatPressure();
 }
 
-float Bme280Wrapper::readFloatAltitudeMeters() {
+float getAltitudeMeters() {
     return myBME280.readFloatAltitudeMeters();
 }
-float Bme280Wrapper::readFloatAltitudeFeet() {
+
+float getAltitudeFeet() {
     return myBME280.readFloatAltitudeFeet();
+}
+
+float Bme280Wrapper::readTempC() {
+  return this->getAverage(&getTempC, 5);
+}
+
+float Bme280Wrapper::readTempF() {
+  return this->getAverage(&getTempF, 5);
+}
+
+float Bme280Wrapper::readHumidity() {
+  return this->getAverage(&getHumidity, 5);
+}
+
+float Bme280Wrapper::readPressure() {
+  return this->getAverage(&getPressure, 5);
+}
+
+float Bme280Wrapper::readAltitudeMeters() {
+  return this->getAverage(&getAltitudeMeters, 5);
+}
+
+float Bme280Wrapper::readAltitudeFeet() {
+    return this->getAverage(&getAltitudeFeet, 5);
+}
+
+float Bme280Wrapper::getAverage(bme820Ptr func, int numIterations) {
+  float sum = 0;
+  for (int i = 0; i < numIterations; i++) {
+    sum += func();
+    delay(5);
+  }
+  return sum / numIterations;
 }

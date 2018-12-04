@@ -31,12 +31,20 @@ boolean Ccs811Wrapper::dataAvailable() {
     return false;
 }
 
+long getCO2private() {
+  return myCCS811.getCO2();
+}
+
+long getTVOCprivate() {
+    return myCCS811.getTVOC();
+}
+
 long Ccs811Wrapper::getCO2() {
-    return myCCS811.getCO2();
+  return this->getAverage(&getCO2private, 5);
 }
 
 long Ccs811Wrapper::getTVOC() {
-    return myCCS811.getTVOC();
+  return this->getAverage(&getTVOCprivate, 5);
 }
 
 void Ccs811Wrapper::setEnvironmentalData(float Humid, float TempC) {
@@ -65,4 +73,13 @@ void Ccs811Wrapper::printDriverError( CCS811Core::status errorCode )
     default:
       Serial.print("Unspecified error.");
   }
+}
+
+long Ccs811Wrapper::getAverage(ccs811Ptr func, int numIterations) {
+  long sum = 0;
+  for (int i = 0; i < numIterations; i++) {
+    sum += func();
+    delay(5);
+  }
+  return sum / numIterations;
 }

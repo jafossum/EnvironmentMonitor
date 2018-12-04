@@ -64,9 +64,7 @@ void loop()
     #endif
 
       BMEtempC = Bme280Wrapper.readTempC();
-      BMEhumid = Bme280Wrapper.readFloatHumidity();
-      CCSco2 = Ccs811Wrapper.getCO2();
-      CCStvoc = Ccs811Wrapper.getTVOC();
+      BMEhumid = Bme280Wrapper.readHumidity();
 
       //This sends the temperature data to the CCS811
       Ccs811Wrapper.setEnvironmentalData(BMEhumid, BMEtempC);
@@ -99,11 +97,11 @@ void printData()
   Serial.print("]C");
 
   Serial.print(" pressure[");
-  Serial.print(Bme280Wrapper.readFloatPressure() * 0.01, 0);
+  Serial.print(Bme280Wrapper.readPressure() * 0.01, 0);
   Serial.print("]mb");
 
   Serial.print(" humidity[");
-  Serial.print(Bme280Wrapper.readFloatHumidity(), 0);
+  Serial.print(Bme280Wrapper.readHumidity(), 0);
   Serial.print("]%");
 
   Serial.println();

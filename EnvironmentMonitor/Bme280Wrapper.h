@@ -5,18 +5,21 @@
 #include <SparkFunBME280.h>
 #include "Wire.h"
 
+// Typedef for a function pointer
+typedef float(*bme820Ptr)();
+
 class Bme280Wrapper {
 private:
-    
+    float getAverage(bme820Ptr func, int numIterations);
 public:
     Bme280Wrapper();
     void init();
     float readTempC();
     float readTempF();
-    float readFloatHumidity();
-    float readFloatPressure();
-    float readFloatAltitudeMeters();
-    float readFloatAltitudeFeet();
+    float readHumidity();
+    float readPressure();
+    float readAltitudeMeters();
+    float readAltitudeFeet();
 };
 
 #endif
