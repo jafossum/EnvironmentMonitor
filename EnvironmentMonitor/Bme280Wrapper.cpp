@@ -80,7 +80,7 @@ float Bme280Wrapper::getAverage(bme820Ptr func, int numIterations) {
   float sum = 0;
   for (int i = 0; i < numIterations; i++) {
     sum += func();
-    delay(5);
+    delay(2);
   }
   return sum / numIterations;
 }

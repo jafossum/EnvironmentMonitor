@@ -79,7 +79,7 @@ long Ccs811Wrapper::getAverage(ccs811Ptr func, int numIterations) {
   long sum = 0;
   for (int i = 0; i < numIterations; i++) {
     sum += func();
-    delay(5);
+    delay(2);
   }
   return sum / numIterations;
 }
