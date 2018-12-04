@@ -65,6 +65,8 @@ void loop()
 
       BMEtempC = Bme280Wrapper.readTempC();
       BMEhumid = Bme280Wrapper.readHumidity();
+      CCSco2 = Ccs811Wrapper.getCO2();
+      CCStvoc = Ccs811Wrapper.getTVOC();
 
       //This sends the temperature data to the CCS811
       Ccs811Wrapper.setEnvironmentalData(BMEhumid, BMEtempC);
